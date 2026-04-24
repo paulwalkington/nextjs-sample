@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Sample App
 
-## Getting Started
+A sample Next.js application built with TypeScript and Tailwind CSS.
 
-First, run the development server:
+## Prerequisites
 
+- Node.js 18 or later
+- npm or yarn
+- Docker (optional, for containerized deployment)
+
+## Local Development
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running Locally
+
+Start the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be available at [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Build the application:
+```bash
+npm run build
+```
 
-## Learn More
+Start the production server:
+```bash
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Docker
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Building the Docker Image
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Build the Docker image:
+```bash
+docker build -t my-app .
+```
 
-## Deploy on Vercel
+### Running the App in Docker
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Run the container:
+```bash
+docker run -p 3000:3000 my-app
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The app will be available at [http://localhost:3000](http://localhost:3000).
+
+### Push docker image to AWS
+
+instructions and helpful commands can be in the aws web ui under "view push commands" button
+
+
+
+Retrieve an authentication token and authenticate your Docker client to your registry
+
+e.g.
+
+```bash
+aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 055706347965.dkr.ecr.eu-west-2.amazonaws.com
+```
+
+build the image
+
+```bash
+docker build -t nextjs-sample .
+```
+
+tag the image
+
+```bash
+docker tag nextjs-sample:latest {REPO_LOCATION}
+```
+
+e.g.
+
+```bash
+docker tag nextjs-sample:latest 055706347965.dkr.ecr.eu-west-2.amazonaws.com/njs-default-ecr-repository:latest
+```
+
+
+push the image to the ecr repository
+
+```bash
+docker push {REPO_LOCATION}
+```
+
+e.g.
+
+```bash
+docker push 055706347965.dkr.ecr.eu-west-2.amazonaws.com/njs-default-ecr-repository:latest
+```
+
+
+access the next js instance via the the load balancer
+
+e.g.
+http://njs-default-frontend-1948790234.eu-west-2.elb.amazonaws.com/
+
+## Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run lint:fix` - Fix ESLint issues
+
+## Technologies
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
+- ESLint
