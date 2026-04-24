@@ -2,7 +2,7 @@ import { getShoppingCentres } from "../components/shoppingCentreService";
 import Link from 'next/link'
 
 export default function Home() {
-  const shoppingCentres: String[] = getShoppingCentres();
+  const shoppingCentres: string[] = getShoppingCentres();
 
   return (
     <div className="flex p-8">
@@ -15,7 +15,7 @@ export default function Home() {
         </thead>
         <tbody>
           {shoppingCentres.map((centre) => (
-            <tr className="hover:bg-blue-50 transition-colors">
+            <tr key={centre} className="hover:bg-blue-50 transition-colors">
               <td className="border border-gray-300 px-6 py-4">
                 <Link href={`/shopping-centres/${centre}`} className="text-blue-500 hover:text-blue-700">
                   {centre}
