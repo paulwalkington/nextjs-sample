@@ -7,15 +7,15 @@ module "ecs_service" {
 
   desired_count = 1
   cpu           = 1024
-  memory        = 8192
+  memory        = 4096
 
   container_definitions = {
 
     app = {
 
       cpu       = 1024
-      memory    = 8192,
-      memoryReservation: 4096,
+      memory    = 4096,
+      memoryReservation: 2048,
       essential = true
       image : "${aws_ecr_repository.ecr-repository.repository_url}:latest",
       readonlyRootFilesystem = false
