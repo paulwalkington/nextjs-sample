@@ -2,6 +2,8 @@
 node_modules
 **/node_modules**/node_modules/
 **/dist
+.next
+
 .git
 npm-debug.log
 .coverage
@@ -9,5 +11,8 @@ npm-debug.log
 .env
 
 terraform
-.next
 .aws
+
+# Ignore Docker-related files
+Dockerfile*
+.dockerignore
