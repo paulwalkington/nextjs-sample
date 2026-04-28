@@ -45,14 +45,14 @@ npm run start
 
 Build the Docker image:
 ```bash
-docker build -t my-app .
+docker build -t nextjs-sample .
 ```
 
 ### Running the App in Docker
 
 Run the container:
 ```bash
-docker run -p 3000:3000 my-app
+docker run -p 3000:3000 nextjs-sample
 ```
 
 The app will be available at [http://localhost:3000](http://localhost:3000).
