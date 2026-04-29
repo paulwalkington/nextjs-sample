@@ -12,8 +12,8 @@ module "elb-frontend" {
   # Security Group
   security_group_ingress_rules = {
     all_http = {
-      from_port   = 3000
-      to_port     = 3000
+      from_port   = 80
+      to_port     = 80
       ip_protocol = "tcp"
       description = "HTTP web traffic"
       cidr_ipv4   = "0.0.0.0/0"
@@ -21,7 +21,7 @@ module "elb-frontend" {
   }
   security_group_egress_rules = {
     ecs = {
-      from_port                    = 3000
+      from_port                    = 80
       to_port                      = 3000
       ip_protocol                  = "tcp"
       description                  = "ECS access"
@@ -32,8 +32,8 @@ module "elb-frontend" {
 
 
   target_groups = {
-    "${local.prefix}-ecs-service" = {
-      name              = "${local.prefix}-service"
+    "${local.prefix}-ecs-service2" = {
+      name              = "${local.prefix}-service2"
       protocol          = "HTTP"
       port              = 3000
       target_type       = "ip"
@@ -57,11 +57,11 @@ module "elb-frontend" {
 
   listeners = {
     http = {
-      port     = 3000
+      port     = 80
       protocol = "HTTP"
 
       forward = {
-        target_group_key = "${local.prefix}-ecs-service"
+        target_group_key = "${local.prefix}-ecs-service2"
       }
 
     }
