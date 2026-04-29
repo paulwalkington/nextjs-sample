@@ -32,8 +32,8 @@ module "elb-frontend" {
 
 
   target_groups = {
-    "${local.prefix}-ecs-service2" = {
-      name              = "${local.prefix}-service2"
+    "${local.prefix}-ecs-service" = {
+      name              = "${local.prefix}-service"
       protocol          = "HTTP"
       port              = 3000
       target_type       = "ip"
@@ -61,7 +61,7 @@ module "elb-frontend" {
       protocol = "HTTP"
 
       forward = {
-        target_group_key = "${local.prefix}-ecs-service2"
+        target_group_key = "${local.prefix}-ecs-service"
       }
 
     }

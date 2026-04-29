@@ -34,7 +34,7 @@ module "ecs_service" {
 
   load_balancer = {
     service = {
-      target_group_arn = module.elb-frontend.target_groups["${local.prefix}-ecs-service2"].arn
+      target_group_arn = module.elb-frontend.target_groups["${local.prefix}-ecs-service"].arn
       container_name   = "app"
       container_port   = 3000
     }
