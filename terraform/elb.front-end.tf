@@ -60,10 +60,31 @@ module "elb-frontend" {
       port     = 80
       protocol = "HTTP"
 
-      forward = {
-        target_group_key = "${local.prefix}-ecs-service"
+      fixed_response = {
+        content_type = "text/plain"
+        message_body = "Access denied"
+        status_code  = "403"
       }
 
+      rules = {
+        allow_cloudfront = {
+          priority = 1
+          conditions = [
+            {
+              http_header = {
+                http_header_name = "X-Allow"
+                values           = ["super_secret_token"]
+              }
+            }
+          ]
+          actions = [
+            {
+              type             = "forward"
+              target_group_key = "${local.prefix}-ecs-service"
+            }
+          ]
+        }
+      }
     }
   }
 }
