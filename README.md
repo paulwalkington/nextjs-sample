@@ -103,10 +103,10 @@ docker push 055706347965.dkr.ecr.eu-west-2.amazonaws.com/njs-default-ecr-reposit
 ```
 
 
-access the next js instance via the the load balancer
+access the next js instance via cloudfront
 
 e.g.
-http://njs-default-frontend-1948790234.eu-west-2.elb.amazonaws.com/
+http://d1fx1oegp7u5hi.cloudfront.net
 
 ## Scripts
 

@@ -1,20 +1,4 @@
-// import Link from 'next/link'
- 
-// export default function Layout({ children }: { children: React.ReactNode }) {
-//   return (
-//     <html>
-//       <body>
-//         <nav>
-//           {/* Prefetched when the link is hovered or enters the viewport */}
-//           <Link href="/dashboard/customers">Customers</Link>
-//           <Link href="/dashboard/invoices">Invoices</Link>
 
-//         </nav>
-//         {children}
-//       </body>
-//     </html>
-//   )
-// }
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
